@@ -1,2 +1,36 @@
+Captive Portal Authentication Mechanisms 
+----------------------------------------
+1. Username and Password
+2. MAC Address 
+3. Browser User Agent 
+4. Javascript based OS enumeration 
+5. TCP/IP stack finger printing 
+6. Windows Authentication 
+
+Tools 
+-----
 CPSPAM - Watch the network active clients and find clients that are inactive and find clients that have left the network
 sudo perl -MPCAN -e 'install NetPacket::IP'
+
+Windows MAC Changer = Technitium MAC Address Changer
+Linux = hwaddress ether 02:01:02:03:04:08
+
+User-Agent Changer 
+https://addons.mozilla.org/en-US/firefox/addon/uaswitcher/
+
+Javascript based passive OS enumeration
+1. Intercept the response to the Javascript OS detection, javascript code to detect os ex: navigator.buildID 
+2. DOM Key Override for values about:config -> enter "general.buildID.override undefined"
+
+Passive TCP/IP stack finger printing
+Windows = OSfucate  
+Linux = 
+The fingerprint format:
+sig = ver:ittl:olen:mss:wsize,scale:olayout:quirks:pclass
+You will need to spoof the following to change your fingerprint:
+OS TTL: sudo sysctl net.ipv4.ip_default_ttl=128 (Windows)
+Maximum Segment Size: sudo sysctl net.ipv4.route.min_adv_mss=1460
+TCP window size: sudo sysctl -w net.ipv4.tcp_rmem='8192 87380 4194304' && sudo sysctl -w net.ipv4.tcp_wmem='8192 87380 4194304'
+Unfortunately, at the olayout section you cannot change these settings in Linux. So, you cannot spoof these. The same is true in the quirks section. It just so happens that olayout "...is one of the most valuable TCP fingerprinting signals."
+
+NTLM HTTP Relay 
