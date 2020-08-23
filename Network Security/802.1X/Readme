@@ -19,6 +19,9 @@ VLAN hopping done by manipulating 802.1q packets, if detected switch will send V
 DTP is proprietary to CISCO switches. Juniper has similar attacks. 
 
 Tool: 
+Yersinia 
+sudo apt install yersinia  
+
 Step 1. Yersinia -I -> g -> DTP -> x -> 1 
 Step 2. If attack successful -> 5 (status dialog) -> "84 TRUNK/AUTO" (successful)
 Step 3. Press g -> select protocol mode -> 802.1q -> enter 
