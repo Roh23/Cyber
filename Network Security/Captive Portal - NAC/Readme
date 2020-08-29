@@ -5,7 +5,6 @@ Captive Portal Authentication Mechanisms
 3. Browser User Agent 
 4. Javascript based OS enumeration 
 5. TCP/IP stack finger printing 
-6. Windows Authentication
 
 Tools 
 -----
@@ -32,7 +31,3 @@ OS TTL: sudo sysctl net.ipv4.ip_default_ttl=128 (Windows)
 Maximum Segment Size: sudo sysctl net.ipv4.route.min_adv_mss=1460
 TCP window size: sudo sysctl -w net.ipv4.tcp_rmem='8192 87380 4194304' && sudo sysctl -w net.ipv4.tcp_wmem='8192 87380 4194304'
 Unfortunately, at the olayout section you cannot change these settings in Linux. So, you cannot spoof these. The same is true in the quirks section. It just so happens that olayout "...is one of the most valuable TCP fingerprinting signals."
-
-NTLM HTTP Relay
-ARPSPOOF + Wireshark + burp = relay to web server  
-msfconsole auxiliary/server/http_ntlmrelay
